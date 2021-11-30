@@ -6,7 +6,8 @@ name: Node.js CI
 on:
   push: 
     branches:
-      - "main"
+      - "feature/*"
+      - "bugfix/*"
     
   pull_request:
     branches: [ main ]
@@ -31,6 +32,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: apis/userprofile/package-lock.json
     - run: |
+        cd apis/userprofile
         npm ci
         npm run build --if-present
         npm test
