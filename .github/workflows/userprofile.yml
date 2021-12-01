@@ -8,10 +8,10 @@ on:
     branches:
       - "feature/*"
       - "bugfix/*"
-    paths:
-      - "apis/userprofile"
-      - ".github/workflows"
-      - '!apis/poi/**'
+    # paths:
+    #   - "apis/userprofile"
+    #   - ".github/workflows"
+    #   - '!apis/poi/**'
     
   pull_request:
     branches: [ main ]
