@@ -26,7 +26,7 @@ jobs:
     - task: FileTransform@1
       displayName: 'File transformation: appsettings.json'
       inputs:
-        folderPath: '$(System.DefaultWorkingDirectory)/apis/poi/*'
+        folderPath: '$(System.DefaultWorkingDirectory)/apis/poi/tests/IntegrationTests/'
         targetFiles: '**/appsettings.json'
         fileType: json
 
