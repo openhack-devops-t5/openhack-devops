@@ -42,3 +42,25 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         filename: .github/ISSUE_TEMPLATE_CUSTOM.md
+
+  # pushToACR:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   environment: TEST
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+  #     with:
+  #       path: main
+  #   - name: Build the Docker image
+  #     run: |
+  #       cd apis/userprofile
+  #       docker build . --file Dockerfile --tag ${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{ github.sha }}
+  #     working-directory: ./main
+   
+  #   - uses: azure/docker-login@v1
+  #     with:
+  #       login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+  #       username: ${{ secrets.ACR_USER }}
+  #       password: ${{ secrets.ACR_SECRET }}
+  #   - run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{ github.sha }}
