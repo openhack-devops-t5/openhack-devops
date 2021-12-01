@@ -10,7 +10,7 @@ var Parser = require('swagger-parser');
 /**
  * Test for /healthcheck/user
  */
-Test('/healthcheck/user2', function (t) {
+Test('/healthcheck/user', function (t) {
     var apiPath = Path.resolve(__dirname, '../../config/swagger.json');
     var App = Express();
     App.use(BodyParser.json());
@@ -33,7 +33,7 @@ Test('/healthcheck/user2', function (t) {
          */
         t.test('test  get operation', function (t) {
             Mockgen().requests({
-                path: '/healthcheck/user',
+                path: '/healthcheck/user2',
                 operation: 'get'
             }, function (err, mock) {
                 var request;
