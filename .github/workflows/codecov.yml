@@ -1,0 +1,12 @@
+
+on:
+  workflow_dispatch:
+jobs:
+  tests:    
+    runs-on: ubuntu-latest
+    steps:
+    - name: Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        flags: unittests

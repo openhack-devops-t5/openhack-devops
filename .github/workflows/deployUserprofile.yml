@@ -8,6 +8,7 @@ on:
     branches: [ main ]
     types:
       - "closed"
+  workflow_dispatch:
 
 jobs:
   pushToACR:
@@ -30,3 +31,9 @@ jobs:
         username: ${{ secrets.ACR_USER }}
         password: ${{ secrets.ACR_SECRET }}
     - run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{ github.sha }}
+
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'openhackw0f57h53userprofile'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: '${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{ github.sha }}'
