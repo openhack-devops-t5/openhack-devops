@@ -52,7 +52,9 @@ jobs:
       with:
         path: main
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{github.sha}}
+      run: |
+        cd apis/userprofile
+        docker build . --file Dockerfile --tag ${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{github.sha}}
       working-directory: ./main
    
     - uses: azure/docker-login@v1
