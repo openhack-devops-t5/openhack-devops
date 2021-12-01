@@ -9,9 +9,9 @@ on:
       - "feature/*"
       - "bugfix/*"
     paths:
-      - "api/userprofile"
+      - "apis/userprofile"
       - ".github/workflows"
-      # - '!sub-project/docs/**'
+      - '!apis/poi/**'
     
   pull_request:
     branches: [ main ]
