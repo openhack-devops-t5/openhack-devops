@@ -8,9 +8,14 @@ on:
     branches:
       - "feature/*"
       - "bugfix/*"
+    paths:
+      - "api/userprofile"
+      - ".github/workflows"
     
   pull_request:
     branches: [ main ]
+    types:
+      - "opened"
     
 
 jobs:
