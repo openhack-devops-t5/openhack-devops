@@ -63,4 +63,4 @@ jobs:
         login-server: ${{ secrets.ACR_LOGIN_SERVER }}
         username: ${{ secrets.ACR_USER }}
         password: ${{ secrets.ACR_SECRET }}
-    - run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/userprofile
+    - run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{ github.sha }}
