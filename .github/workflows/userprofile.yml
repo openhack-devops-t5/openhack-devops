@@ -5,13 +5,12 @@ name: Node.js CI
 
 on:
   push: 
+    paths:
+      - "apis/userprofile"
     branches:
       - "feature/*"
       - "bugfix/*"
-    # paths:
-    #   - "apis/userprofile"
-    #   - ".github/workflows"
-    #   - '!apis/poi/**'
+    
     
   pull_request:
     branches: [ main ]
