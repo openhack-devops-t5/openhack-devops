@@ -16,25 +16,37 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  ConnectionStrings.myDrivingDB: 'Server=tcp:openhackw0f57h53sql.database.windows.net,1433;Initial Catalog=mydrivingDB;Persist Security Info=False;User ID=demousersa;Password=demo@pass123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
+
 jobs:
-- job: tests
-  steps:
-  - task: DotNetCoreCLI@2
-    inputs:
-      command: 'test'
-      projects: 'apis/poi/poi.sln'
+  - job: updatingconnectionstring
+    steps:
+    - task: FileTransform@1
+      displayName: 'File transformation: appsettings.json'
+      inputs:
+        folderPath: '$(Build.ArtifactStagingDirectory)/apis/poi/*'
+        targetFiles: '**/appsettings.json'
+        fileType: json
+
+  - job: tests
+    steps:
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'test'
+        projects: 'apis/poi/poi.sln'
 
 # This job creates a work item, and only runs if the previous job failed
-- job: ErrorHandler
-  dependsOn: tests
-  condition: failed()
-  steps: 
-  - bash: |
-      az boards work-item create \
-        --title "Build $(build.buildNumber) failed" \
-        --type issue \
-        --org $(System.TeamFoundationCollectionUri) \
-        --project $(System.TeamProject)
-    env: 
-      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
-    displayName: 'Create work item on failure'
+  - job: ErrorHandler
+    dependsOn: tests
+    condition: failed()
+    steps: 
+    - bash: |
+        az boards work-item create \
+          --title "Build $(build.buildNumber) failed" \
+          --type issue \
+          --org $(System.TeamFoundationCollectionUri) \
+          --project $(System.TeamProject)
+      env: 
+        AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
+      displayName: 'Create work item on failure'
