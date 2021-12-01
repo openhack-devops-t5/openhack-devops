@@ -8,12 +8,10 @@ on:
     branches: [ main ]
     types:
       - "closed"
-    
 
 jobs:
   pushToACR:
     runs-on: ubuntu-latest
-    needs: build
     environment: TEST
     steps:
     - name: Checkout
