@@ -10,7 +10,7 @@ var Parser = require('swagger-parser');
 /**
  * Test for /healthcheck/user
  */
-Test('/healthcheck/user', function (t) {
+Test('/healthcheck/user2', function (t) {
     var apiPath = Path.resolve(__dirname, '../../config/swagger.json');
     var App = Express();
     App.use(BodyParser.json());
