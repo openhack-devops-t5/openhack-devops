@@ -22,10 +22,11 @@ variables:
 jobs:
   - job: updatingconnectionstring
     steps:
+
     - task: FileTransform@1
       displayName: 'File transformation: appsettings.json'
       inputs:
-        folderPath: '$(Build.ArtifactStagingDirectory)/apis/poi/*'
+        folderPath: '$(System.DefaultWorkingDirectory)/apis/poi/*'
         targetFiles: '**/appsettings.json'
         fileType: json
 
