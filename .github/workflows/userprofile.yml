@@ -13,10 +13,10 @@ on:
       - "bugfix/*"
     
     
-  pull_request:
-    branches: [ main ]
-    types:
-      - "opened"
+  # pull_request:
+  #   branches: [ main ]
+  #   types:
+  #     - "opened"
     
 
 jobs:
