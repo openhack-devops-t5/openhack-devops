@@ -20,7 +20,7 @@ variables:
   ConnectionStrings.myDrivingDB: 'Server=tcp:openhackw0f57h53sql.database.windows.net,1433;Initial Catalog=mydrivingDB;Persist Security Info=False;User ID=demousersa;Password=demo@pass123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
 
 jobs:
-  - job: updatingconnectionstring
+  - job: tests
     steps:
 
     - task: FileTransform@1
@@ -29,9 +29,7 @@ jobs:
         folderPath: '$(System.DefaultWorkingDirectory)/apis/poi/tests/IntegrationTests/'
         targetFiles: '**/appsettings.json'
         fileType: json
-
-  - job: tests
-    steps:
+  
     - task: DotNetCoreCLI@2
       inputs:
         command: 'test'
