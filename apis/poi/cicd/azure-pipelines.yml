@@ -23,17 +23,22 @@ jobs:
   - job: tests
     steps:
 
-    - task: FileTransform@1
-      displayName: 'File transformation: appsettings.json'
-      inputs:
-        folderPath: '$(System.DefaultWorkingDirectory)/apis/poi/tests/IntegrationTests/'
-        targetFiles: '**/appsettings.json'
-        fileType: json
+    # - task: FileTransform@1
+    #   displayName: 'File transformation: appsettings.json'
+    #   inputs:
+    #     folderPath: '$(System.DefaultWorkingDirectory)/apis/poi/tests/IntegrationTests/'
+    #     targetFiles: '**/appsettings.json'
+    #     fileType: json
   
     - task: DotNetCoreCLI@2
       inputs:
-        command: 'test'
+        command: 'build'
         projects: 'apis/poi/poi.sln'
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'test'
+        projects: 'apis/poi/tests/UnitTests/UnitTests.csproj'
 
 # This job creates a work item, and only runs if the previous job failed
   - job: ErrorHandler
