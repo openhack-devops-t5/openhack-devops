@@ -3,7 +3,14 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- main
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - apis/poi
+    exclude:
+    - apis/poi/cicd
 
 resources:
 - repo: self
