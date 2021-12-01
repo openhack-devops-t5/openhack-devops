@@ -15,5 +15,10 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: dotnet test .
-  displayName: 'Run unit test for POI'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: 'apis/poi/poi.sln'
+
+# - script: dotnet test .
+#   displayName: 'Run unit test for POI'
