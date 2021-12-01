@@ -45,9 +45,12 @@ jobs:
 
   pushToACR:
     runs-on: ubuntu-latest
+    needs: build
     steps:
     - name: Build the Docker image
-      run: docker build ./apis/userprofile --file Dockerfile --tag ${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{github.sha}}
+      run: |
+        cd apis/userprofile
+        docker build . --file Dockerfile --tag ${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{github.sha}}
    
     - uses: azure/docker-login@v1
       with:
