@@ -37,3 +37,21 @@ jobs:
         app-name: 'openhackw0f57h53userprofile'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         images: '${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{ github.sha }}'
+        slot-name: 'openhackw0f57h53userprofile-staging'
+
+    - name: 'Az CLI login'
+      uses: azure/login@v1.1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Check Health
+      id: slot
+      run: |
+        cd scripts
+        . polling.sh "https://openhackw0f57h53userprofile-staging.azurewebsites.net/api/healthcheck/user"
+      shell: bash
+
+    - name: Swap to production
+      if: ${{ steps.id.slot.status }} == '200'
+      run: |
+        az webapp deployment slot swap  -g openhackw0f57h53rg -n openhackw0f57h53userprofile --slot staging --target-slot testswap

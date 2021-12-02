@@ -1,0 +1,33 @@
+name: Node.js test api
+
+on:
+#   push: 
+#     paths:
+#       - "apis/userprofile/**"
+#       - ".github/workflows/**"
+#     branches:
+#       - "feature/*"
+#       - "bugfix/*"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:      
+    - uses: actions/checkout@v2
+    - name: 'Az CLI login'
+      uses: azure/login@v1.1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Check Slot
+      id: slot
+      run: |
+        cd scripts
+        . polling.sh "https://openhackw0f57h53userprofile-staging.azurewebsites.net/api/healthcheck/user"
+      shell: bash
+
+    - name: Deploy to production
+      if: ${{ steps.id.slot.status }} == '200'
+      run: |
+        az webapp deployment slot swap  -g openhackw0f57h53rg -n openhackw0f57h53userprofile --slot staging --target-slot testswap
