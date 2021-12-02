@@ -61,4 +61,4 @@ stages:
         DockerImageTag: '$(tag)'
     - task: CmdLine@2
       inputs:
-        script: '- bash: ''curl -i https://openhackw0f57h53poi-staging.azurewebsites.net/api/version/poi | grep -i "poi default"'''
+        script: '- bash: curl -i https://openhackw0f57h53poi-staging.azurewebsites.net/api/version/poi | grep -i "poi default"'
