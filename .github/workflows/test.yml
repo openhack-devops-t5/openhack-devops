@@ -18,7 +18,7 @@ jobs:
       id: slot
       run: |
         cd scripts
-        . polling.sh "https://openhackw0f57h53userprofile-staging.azurewebsites.net"
+        . polling.sh "https://openhackw0f57h53userprofile-staging.azurewebsites.net/api/healthcheck/user"
       shell: bash
 
     - name: Deploy to production
