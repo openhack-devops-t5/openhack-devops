@@ -18,7 +18,7 @@ jobs:
     - name: 'Az CLI login'
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_SECRET }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Check Slot
       id: slot
