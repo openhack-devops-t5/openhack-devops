@@ -37,7 +37,7 @@ jobs:
         app-name: 'openhackw0f57h53userprofile'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         images: '${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{ github.sha }}'
-        slot-name: 'openhackw0f57h53userprofile-staging'
+        slot-name: 'staging'
 
     - name: 'Az CLI login'
       uses: azure/login@v1.1
