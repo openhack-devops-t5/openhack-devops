@@ -41,6 +41,6 @@ while($true) {
 
     $output = '{0} | {1}' -f($timestamp, $R.StatusCode)
   }
-  Write-Output $output
+  Write-Output "##vso[task.setvariable variable=output;isOutput=true]$output"
   Start-Sleep -Seconds 1
 }
