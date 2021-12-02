@@ -28,7 +28,7 @@ module.exports = {
             Mockgen().responses({
                 path: '/healthcheck/user',
                 operation: 'get',
-                response: 'default'
+                response: 'v1'
             }, callback);
         }
     }
