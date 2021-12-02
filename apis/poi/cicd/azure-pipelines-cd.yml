@@ -59,6 +59,6 @@ stages:
         DockerNamespace: 'openhackw0f57h53acr.azurecr.io'
         DockerRepository: $(imageRepository)
         DockerImageTag: '$(tag)'
-- task: CmdLine@2
-  inputs:
-    script: '- bash: ''curl -i https://openhackw0f57h53poi-staging.azurewebsites.net/api/version/poi | grep -i "poi default"'''
+    - task: CmdLine@2
+      inputs:
+        script: '- bash: ''curl -i https://openhackw0f57h53poi-staging.azurewebsites.net/api/version/poi | grep -i "poi default"'''
