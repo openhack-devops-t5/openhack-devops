@@ -17,7 +17,8 @@ jobs:
     - name: Check Slot
       id: slot
       run: |
-        sudo scripts/polling.sh "https://openhackw0f57h53userprofile-staging.azurewebsites.net"
+        ls -a
+        sudo ./scripts/polling.sh "https://openhackw0f57h53userprofile-staging.azurewebsites.net"
       shell: bash
 
     - name: Deploy to production
