@@ -1,13 +1,13 @@
 name: Node.js test api
 
 on:
-  push: 
-    paths:
-      - "apis/userprofile/**"
-      - ".github/workflows/**"
-    branches:
-      - "feature/*"
-      - "bugfix/*"
+#   push: 
+#     paths:
+#       - "apis/userprofile/**"
+#       - ".github/workflows/**"
+#     branches:
+#       - "feature/*"
+#       - "bugfix/*"
   workflow_dispatch:
 
 jobs:
