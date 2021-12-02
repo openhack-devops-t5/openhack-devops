@@ -35,7 +35,7 @@ jobs:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'openhackw0f57h53userprofile'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        publish-profile: ${{ secrets.AZURE_PP_SLOT_STAGING }}
         images: '${{ secrets.ACR_LOGIN_SERVER }}/userprofile:${{ github.sha }}'
         slot-name: 'staging'
 
