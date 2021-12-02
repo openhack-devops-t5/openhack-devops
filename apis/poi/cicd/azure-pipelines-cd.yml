@@ -12,6 +12,11 @@ trigger:
     exclude:
     - apis/poi/cicd
 
+parameters:
+- name: rollBack
+  default: false
+  type: boolean
+
 resources:
 - repo: self
 
@@ -65,4 +70,13 @@ stages:
     - task: Bash@3
       inputs:
         targetType: 'inline'
+        failOnStderr: true
         script: 'curl -i https://openhackw0f57h53poi-staging.azurewebsites.net/api/version/poi | grep -i "poi default"'
+
+    - task: AzureAppServiceManage@0
+      inputs:
+           azureSubscription: 'Azure subscription 1(7e49ed9e-1a35-4c79-ad2c-33d61dd53a7d)'
+           Action: 'Swap Slots'
+           WebAppName: 'openhackw0f57h53poi'
+           ResourceGroupName: 'openhackw0f57h53rg'
+           SourceSlot: 'staging'
