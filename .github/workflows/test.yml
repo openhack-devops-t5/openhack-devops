@@ -14,12 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:      
     - uses: actions/checkout@v2
+    - name: 'Az CLI login'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_SECRET }}
+
     - name: Check Slot
       id: slot
       run: |
         cd scripts
         . polling.sh "https://openhackw0f57h53userprofile-staging.azurewebsites.net/api/healthcheck/user"
-        echo "$status"
       shell: bash
 
     - name: Deploy to production
